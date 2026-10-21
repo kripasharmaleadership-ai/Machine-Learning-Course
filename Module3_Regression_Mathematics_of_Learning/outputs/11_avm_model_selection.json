@@ -1,0 +1,132 @@
+{
+  "problem": "Automated Valuation Model for home-equity loans (Ames, Iowa)",
+  "recommendation": "Lasso (log price)",
+  "requirements": [
+    {
+      "name": "Accuracy floor",
+      "metric": "MdAPE %",
+      "threshold": 10.0,
+      "higher_is_better": false,
+      "hard": true,
+      "weight": 0.0,
+      "why": "Industry AVMs with MdAPE above ~10% are not accepted for lending decisions"
+    },
+    {
+      "name": "Explainable",
+      "metric": "explainable",
+      "threshold": null,
+      "higher_is_better": true,
+      "hard": true,
+      "weight": 0.0,
+      "why": "Regulator requires per-feature reasons for every adverse decision"
+    },
+    {
+      "name": "No over-valuation of top homes",
+      "metric": "top-decile bias %",
+      "threshold": 5.0,
+      "higher_is_better": false,
+      "hard": true,
+      "weight": 0.0,
+      "why": "Over-valuing the most expensive 10% creates the largest loan losses"
+    },
+    {
+      "name": "Latency",
+      "metric": "latency ms",
+      "threshold": 50.0,
+      "higher_is_better": false,
+      "hard": true,
+      "weight": 0.0,
+      "why": "Valuation is called live inside the loan application form"
+    },
+    {
+      "name": "Typical error (RMSE $)",
+      "metric": "RMSE",
+      "threshold": null,
+      "higher_is_better": false,
+      "hard": false,
+      "weight": 0.35,
+      "why": "Overall dollar accuracy"
+    },
+    {
+      "name": "Hit rate within 10%",
+      "metric": "PPE10 %",
+      "threshold": null,
+      "higher_is_better": true,
+      "hard": false,
+      "weight": 0.25,
+      "why": "Share of homes that need no manual review"
+    },
+    {
+      "name": "Inputs to collect",
+      "metric": "inputs used",
+      "threshold": null,
+      "higher_is_better": false,
+      "hard": false,
+      "weight": 0.25,
+      "why": "Every input is a question a loan officer must ask"
+    },
+    {
+      "name": "Stability across folds",
+      "metric": "CV RMSE sd",
+      "threshold": null,
+      "higher_is_better": false,
+      "hard": false,
+      "weight": 0.15,
+      "why": "Predictable behaviour on new data"
+    }
+  ],
+  "results": {
+    "Ridge (log price)": {
+      "RMSE": 20783.47677076943,
+      "MAE": 13636.238113351807,
+      "R2": 0.9283581473716846,
+      "MdAPE %": 5.713881277146971,
+      "PPE10 %": 73.96907216494846,
+      "top-decile bias %": -3.1014759441217836,
+      "CV RMSE sd": 1455.1008311672724,
+      "inputs used": 79,
+      "latency ms": 9.636350000619132,
+      "explainable": true,
+      "fit seconds": 0.2561064999998052
+    },
+    "Lasso (log price)": {
+      "RMSE": 20808.791139379773,
+      "MAE": 13489.499015778754,
+      "R2": 0.9281835208881037,
+      "MdAPE %": 5.578086208663812,
+      "PPE10 %": 73.8831615120275,
+      "top-decile bias %": -3.1280017410558103,
+      "CV RMSE sd": 1633.6064245119996,
+      "inputs used": 59,
+      "latency ms": 9.679249999862805,
+      "explainable": true,
+      "fit seconds": 0.2712206199998036
+    },
+    "Decision tree (depth <= 6)": {
+      "RMSE": 36691.267901489744,
+      "MAE": 25239.453441378766,
+      "R2": 0.7767169035957888,
+      "MdAPE %": 11.068769769302348,
+      "PPE10 %": 45.96219931271477,
+      "top-decile bias %": -5.451935591946113,
+      "CV RMSE sd": 3391.6105907167967,
+      "inputs used": 17,
+      "latency ms": 10.426799999549985,
+      "explainable": true,
+      "fit seconds": 0.7416051200001675
+    },
+    "Baseline: neighbourhood $/sqft": {
+      "RMSE": 41673.63942570102,
+      "MAE": 29643.416604612175,
+      "R2": 0.7119596919588124,
+      "MdAPE %": 12.80423763654408,
+      "PPE10 %": 41.15120274914089,
+      "top-decile bias %": -11.411299516858914,
+      "CV RMSE sd": 4758.608823968362,
+      "inputs used": 2,
+      "latency ms": 0.17899999966175528,
+      "explainable": true,
+      "fit seconds": 0.002208039999823086
+    }
+  }
+}

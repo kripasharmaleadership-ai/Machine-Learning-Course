@@ -1,0 +1,11 @@
+numpy>=2.0
+pandas>=2.2
+scipy>=1.13
+scikit-learn>=1.8
+matplotlib>=3.8
+# the agent harness validates tool arguments against their JSON schemas (Labs 04, 10-15)
+jsonschema>=4.23
+# optional: run the labs cell-by-cell in VS Code / Jupyter
+ipykernel>=6.29
+# optional: call the real Claude API instead of the offline SimLLM (set LLM_BACKEND=claude; costs real money)
+# anthropic>=0.70

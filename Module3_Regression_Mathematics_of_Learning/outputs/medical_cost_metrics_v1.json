@@ -1,0 +1,33 @@
+{
+  "model": "linear regression + domain features (smoker_obese, age_sq)",
+  "train_rows": 1069,
+  "test_rows": 268,
+  "cv": {
+    "CV RMSE": 4348.297913531978,
+    "CV MAE": 2399.1307038733084,
+    "CV R2": 0.8673744607604691,
+    "RMSE sd": 566.0030208962728
+  },
+  "test": {
+    "MAE": 2650.0469955229332,
+    "MSE": 23575480.182715412,
+    "RMSE": 4855.458802493891,
+    "R2": 0.8417440182924394,
+    "Adj R2": 0.8355861979925343,
+    "MedianAE": 1439.1875673875038,
+    "MAPE %": 28.879759530815818
+  },
+  "coefficients": {
+    "age": -34.82,
+    "bmi": 54.12,
+    "children": 677.44,
+    "age_sq": 3.74,
+    "smoker_obese": 19370.55,
+    "sex_male": -480.66,
+    "smoker_yes": 13576.42,
+    "region_northwest": 66.04,
+    "region_southeast": -782.36,
+    "region_southwest": -836.32
+  },
+  "intercept": 1482.7217395411826
+}

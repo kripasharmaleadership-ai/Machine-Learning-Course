@@ -1,0 +1,8 @@
+numpy>=2.0
+pandas>=2.2
+scikit-learn>=1.8
+scipy>=1.13
+matplotlib>=3.8
+joblib>=1.4
+# optional: run the labs cell-by-cell in VS Code / Jupyter
+ipykernel>=6.29

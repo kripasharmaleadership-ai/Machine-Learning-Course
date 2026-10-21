@@ -1,0 +1,49 @@
+question,gold_article,answer,split
+What internet connection should guests use?,IT-06,guest,dev
+How do I release my print job?,IT-02,30 seconds,dev
+how big is my mailbox quota,IT-03,50 GB,dev
+what do i do with a suspicious inbox,IT-08,Report button,dev
+Can I install a program myself?,IT-04,service portal,dev
+how do i set up multi-factor authentication,IT-07,authenticator app,dev
+where are my backup codes,IT-07,authenticator app,dev
+How do I connect to the internet connection in the office?,IT-06,guest,dev
+what do i do if i lose my company phone,IT-11,24 hours,dev
+what do i do with a suspicious outlook,IT-08,Report button,dev
+"My printer is not working, what should I try?",IT-02,30 seconds,dev
+Where do I get the remote access client client?,IT-01,software centre,dev
+"my work machine is broken, how do I get it fixed",IT-05,4 years,dev
+what wi-fi should guests use,IT-06,guest,dev
+How do I get new software on my computer?,IT-04,service portal,dev
+Where do I get the VPN client?,IT-01,software centre,dev
+How often is my laptop replaced?,IT-05,4 years,dev
+can i set up a program myself,IT-04,service portal,dev
+how do i connect to the wi-fi in the office,IT-06,guest,dev
+"My copier is not working, what should I try?",IT-02,30 seconds,dev
+How do I get new software on my notebook?,IT-04,service portal,dev
+who replaces toner in the printer,IT-02,30 seconds,dev
+what do i do if i lose my company phone,IT-11,24 hours,dev
+How do I report phishing?,IT-08,Report button,dev
+How do I reset my login credentials?,IT-00,14 characters,dev
+"my computer is broken, how do I get it fixed",IT-05,4 years,dev
+How do I reset my sign-in details?,IT-00,14 characters,dev
+where are my backup codes,IT-07,authenticator app,dev
+How long are meeting recordings kept?,IT-10,300 participants,dev
+How do I get access to a shared drive?,IT-09,30 days,dev
+How do I get access to a shared drive?,IT-09,30 days,dev
+how quickly must I report a lost phone,IT-11,24 hours,dev
+How often is my notebook replaced?,IT-05,4 years,dev
+how quickly must i report a lost phone,IT-11,24 hours,dev
+I clicked a strange link in an email,IT-08,Report button,dev
+"My email is full, what can I do?",IT-03,50 GB,dev
+how long must a new passcode be,IT-00,14 characters,dev
+How do I connect to the secure tunnel from home?,IT-01,software centre,dev
+How many people can join a video meeting?,IT-10,300 participants,dev
+what is the storage limit of the Outlook,IT-03,50 GB,dev
+"i got a new phone, how do i move my mfa",IT-07,authenticator app,dev
+"I forgot my passcode, what do I do?",IT-00,14 characters,dev
+"my inbox is full, what can i do",IT-03,50 GB,dev
+How many people can join a video meeting?,IT-10,300 participants,dev
+Can deleted files be restored?,IT-09,30 days,dev
+How long are meeting recordings kept?,IT-10,300 participants,dev
+can deleted files be restored,IT-09,30 days,dev
+cannot reach internal sites when working from home,IT-01,software centre,dev

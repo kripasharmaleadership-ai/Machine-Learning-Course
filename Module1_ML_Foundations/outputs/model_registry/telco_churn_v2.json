@@ -1,0 +1,34 @@
+{
+  "model_name": "telco_churn",
+  "version": "v2",
+  "created_utc": "2026-10-03T15:38:53+00:00",
+  "algorithm": "LogisticRegression",
+  "features": [
+    "senior_citizen",
+    "tenure_months",
+    "monthly_charges",
+    "total_charges",
+    "support_tickets_90d",
+    "region",
+    "contract_type",
+    "internet_service",
+    "has_tech_support",
+    "payment_method"
+  ],
+  "excluded_columns": [
+    "customer_id",
+    "signup_date",
+    "cancellation_reason",
+    "days_since_last_payment",
+    "retention_offer_made"
+  ],
+  "training_rows": 3000,
+  "training_data_fingerprint": "efd38872e18f",
+  "training_churn_rate": 0.2877,
+  "decision_threshold": 0.1,
+  "metrics": {
+    "recent_holdout_roc_auc": 0.7745
+  },
+  "intended_use": "Rank customers for retention outreach. Not for pricing or credit decisions.",
+  "owner": "ml-platform@telcoco.example"
+}

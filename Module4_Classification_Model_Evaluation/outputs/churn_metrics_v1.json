@@ -1,0 +1,37 @@
+{
+  "model": "logistic regression (C=0.5) + TunedThresholdClassifierCV (profit)",
+  "threshold": 0.17345794748513926,
+  "train_rows": 5634,
+  "test_rows": 1409,
+  "economics": {
+    "contact_cost": 5.0,
+    "discount_months": 0.75,
+    "success_rate": 0.35,
+    "horizon_months": 12
+  },
+  "cv": {
+    "ROC-AUC": 0.8455418359175831,
+    "AP": 0.6583259099121902,
+    "accuracy": 0.6900958466453674,
+    "precision": 0.4570058239122987,
+    "recall": 0.8923076923076924,
+    "F1": 0.6044404168554599,
+    "Brier": 0.13509939092594384,
+    "campaign profit $": 301755.1125
+  },
+  "test": {
+    "ROC-AUC": 0.8420031517218217,
+    "AP": 0.6349027662797512,
+    "accuracy": 0.6855926188786373,
+    "precision": 0.4534412955465587,
+    "recall": 0.8983957219251337,
+    "F1": 0.6026905829596413,
+    "Brier": 0.138047744230246,
+    "campaign profit $": 71564.92499999999
+  },
+  "test_auc_vs_boosting_ci": {
+    "diff (B - A)": 0.005046629982691564,
+    "ci_low": -0.001962096005666264,
+    "ci_high": 0.012712424846272776
+  }
+}

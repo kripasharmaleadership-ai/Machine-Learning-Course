@@ -1,0 +1,52 @@
+name: Smoke tests
+
+# Runs every lab and assignment starter of every module (each module's run_all.py), in parallel.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  module:
+    name: ${{ matrix.module }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        module:
+          - Module1_ML_Foundations
+          - Module2_Data_Preparation_Feature_Engineering
+          - Module3_Regression_Mathematics_of_Learning
+          - Module4_Classification_Model_Evaluation
+          - Module5_Trees_Ensembles_Tuning_XAI
+          - Module6_Unsupervised_Recommendations_Embeddings
+          - Module7_Neural_Networks_Road_to_GenAI
+          - Module8_GenAI_Capstone_Agentic_AI
+    env:
+      MPLBACKEND: Agg
+      PYTHONUNBUFFERED: "1"
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: ${{ matrix.module }}/requirements.txt
+
+      - name: Install CPU-only PyTorch (Module 7)
+        if: matrix.module == 'Module7_Neural_Networks_Road_to_GenAI'
+        run: pip install torch --index-url https://download.pytorch.org/whl/cpu
+
+      - name: Install requirements
+        run: pip install -r ${{ matrix.module }}/requirements.txt
+
+      - name: Run every lab
+        working-directory: ${{ matrix.module }}
+        run: python run_all.py

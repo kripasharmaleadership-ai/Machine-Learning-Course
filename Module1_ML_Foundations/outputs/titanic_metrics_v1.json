@@ -1,0 +1,49 @@
+{
+  "model": "titanic_baseline_v1 (logistic regression pipeline)",
+  "features_used": [
+    "age",
+    "sibsp",
+    "parch",
+    "fare",
+    "pclass",
+    "sex",
+    "embarked",
+    "name",
+    "cabin"
+  ],
+  "excluded_leaky": [
+    "boat",
+    "body"
+  ],
+  "train_rows": 1047,
+  "test_rows": 262,
+  "baseline_rule_test_accuracy": 0.8015,
+  "test_accuracy": 0.8397,
+  "test_roc_auc": 0.881,
+  "cv_table": [
+    {
+      "model": "dummy (majority)",
+      "cv_accuracy": 0.618,
+      "+/-": 0.0009,
+      "cv_f1": 0.0,
+      "cv_roc_auc": 0.5,
+      "train_accuracy": 0.618
+    },
+    {
+      "model": "logistic regression",
+      "cv_accuracy": 0.7975,
+      "+/-": 0.0099,
+      "cv_f1": 0.7314,
+      "cv_roc_auc": 0.8468,
+      "train_accuracy": 0.8121
+    },
+    {
+      "model": "random forest",
+      "cv_accuracy": 0.8071,
+      "+/-": 0.0151,
+      "cv_f1": 0.7302,
+      "cv_roc_auc": 0.85,
+      "train_accuracy": 0.835
+    }
+  ]
+}

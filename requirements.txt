@@ -1,0 +1,20 @@
+# Everything for all 8 modules. Each module folder also has its own (smaller) requirements.txt.
+numpy>=2.0
+pandas>=2.2
+scikit-learn>=1.8
+scipy>=1.13
+matplotlib>=3.8
+joblib>=1.4
+# Module 7: small neural networks and a TinyGPT (CPU is enough; for a smaller download use
+#   pip install torch --index-url https://download.pytorch.org/whl/cpu)
+torch>=2.4
+# Module 8: the agent harness validates tool arguments against JSON schemas
+jsonschema>=4.23
+# optional: run the labs cell-by-cell in VS Code / Jupyter
+ipykernel>=6.29
+
+# optional extras, picked up automatically if installed:
+# xgboost, shap              Module 5 compares its from-scratch versions with the libraries
+# sentence-transformers>=3.0 Module 6, Lab 08 adds a pre-trained embedding model
+# transformers>=4.44         Module 7, Lab 14 adds DistilBERT (downloads ~270 MB once)
+# anthropic>=0.70            Module 8 calls the real Claude API with LLM_BACKEND=claude (costs real money)

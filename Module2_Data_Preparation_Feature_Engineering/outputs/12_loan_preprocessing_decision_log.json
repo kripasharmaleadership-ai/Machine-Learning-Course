@@ -1,0 +1,262 @@
+[
+  {
+    "#": 1,
+    "step": "uniqueness",
+    "columns": "all",
+    "decision": "drop exact duplicate rows",
+    "rationale": "ETL reloads: identical rows incl. application_id",
+    "alternatives_considered": "keep (would overweight those applicants and leak across splits)",
+    "evidence": "180 exact duplicates",
+    "rows_affected": "180"
+  },
+  {
+    "#": 2,
+    "step": "parsing",
+    "columns": "application_date",
+    "decision": "parse with format='mixed' (ISO + US formats)",
+    "rationale": "Two upstream systems write different formats",
+    "alternatives_considered": "drop non-ISO rows (20% of data)",
+    "evidence": "0 unparseable after parsing",
+    "rows_affected": 0
+  },
+  {
+    "#": 3,
+    "step": "parsing",
+    "columns": "annual_income",
+    "decision": "strip '$' and ',' -> float; 'N/A' and '' -> NaN",
+    "rationale": "Currency-formatted strings; pd.to_numeric would silently turn them into NaN",
+    "alternatives_considered": "pd.to_numeric(errors='coerce')",
+    "evidence": "2836 '$' strings, 384 blank/N/A",
+    "rows_affected": 3220
+  },
+  {
+    "#": 4,
+    "step": "validity",
+    "columns": "age",
+    "decision": "values outside [18, 100] -> NaN",
+    "rationale": "0 / 999 are 'unknown' codes",
+    "alternatives_considered": "clip to range (invents values)",
+    "evidence": "values found: [0.0, 999.0]",
+    "rows_affected": 85
+  },
+  {
+    "#": 5,
+    "step": "validity",
+    "columns": "credit_score",
+    "decision": "values outside [300, 850] -> NaN",
+    "rationale": "0 is the legacy 'no score' code",
+    "alternatives_considered": "clip to range (invents values)",
+    "evidence": "values found: [0.0]",
+    "rows_affected": 13
+  },
+  {
+    "#": 6,
+    "step": "validity",
+    "columns": "credit_utilization",
+    "decision": "values > 1.5 divided by 100",
+    "rationale": "Entered as a percentage; utilisation above 150% does not occur, and /100 lands in the normal range",
+    "alternatives_considered": "NaN + impute",
+    "evidence": "max before 113, after 1.20",
+    "rows_affected": 125
+  },
+  {
+    "#": 7,
+    "step": "validity",
+    "columns": "annual_income",
+    "decision": "> $2M -> NaN (then imputed)",
+    "rationale": "Consistent with income typed in cents (x100); the true value is ambiguous, so do not 'fix'",
+    "alternatives_considered": "divide by 100 (guess); keep (destroys linear models, Lab 03)",
+    "evidence": "21 values, max 11,160,000",
+    "rows_affected": 21
+  },
+  {
+    "#": 8,
+    "step": "validity",
+    "columns": "loan_amount",
+    "decision": "> product maximum $75k -> NaN",
+    "rationale": "Product policy caps loans at $75k; values are exact x10 typos",
+    "alternatives_considered": "divide by 10",
+    "evidence": "18 values",
+    "rows_affected": 18
+  },
+  {
+    "#": 9,
+    "step": "consistency",
+    "columns": "employment_type, home_ownership, state, employer, purpose_text",
+    "decision": "trim, lower-case, unify separators, map synonyms (e.g. 'Contractor' -> 'Contract'; 'OTHER'/'NONE' -> 'Other')",
+    "rationale": "Free-text entry produced spelling variants of the same category",
+    "alternatives_considered": "one-hot as-is (17 fake categories)",
+    "evidence": "employment_type: 17 spellings -> 5 categories",
+    "rows_affected": null
+  },
+  {
+    "#": 10,
+    "step": "uniqueness",
+    "columns": "age, annual_income, loan_amount, loan_purpose, application_date, employer, state",
+    "decision": "drop later re-submissions with identical applicant + loan fields",
+    "rationale": "Same person re-applied; keeping both double-counts them and leaks across splits",
+    "alternatives_considered": "fuzzy matching (not needed: exact match after normalisation)",
+    "evidence": "120 re-submissions",
+    "rows_affected": 120
+  },
+  {
+    "#": 11,
+    "step": "missing values",
+    "columns": "years_employed",
+    "decision": "median + missing indicator",
+    "rationale": "Structurally missing for the unemployed (not applicable); indicator keeps that fact",
+    "alternatives_considered": "fill 0",
+    "evidence": "",
+    "rows_affected": null
+  },
+  {
+    "#": 12,
+    "step": "missing values",
+    "columns": "annual_income, credit_score, age",
+    "decision": "median + missing indicator",
+    "rationale": "MNAR: low earners skip income; thin files have no score (Lab 02)",
+    "alternatives_considered": "drop rows; mean",
+    "evidence": "income 6.6%, score 2.3%, age 2.5% missing",
+    "rows_affected": null
+  },
+  {
+    "#": 13,
+    "step": "missing values",
+    "columns": "home_ownership, employment_type, state, loan_purpose",
+    "decision": "constant 'missing' category before one-hot",
+    "rationale": "Few rows; keeps them scoreable",
+    "alternatives_considered": "mode",
+    "evidence": "",
+    "rows_affected": null
+  },
+  {
+    "#": 14,
+    "step": "feature selection",
+    "columns": "employer",
+    "decision": "excluded from v1",
+    "rationale": "~1,200 levels; needs target encoding (Lab 04) - deferred to v2 to keep v1 simple and auditable",
+    "alternatives_considered": "one-hot; target encoding",
+    "evidence": "",
+    "rows_affected": null
+  },
+  {
+    "#": 15,
+    "step": "validity",
+    "columns": "annual_income",
+    "decision": "< $5,000 -> NaN (then imputed)",
+    "rationale": "Consistent with monthly income typed into the annual field; x12 is a guess, so do not 'fix'",
+    "alternatives_considered": "multiply by 12 (guess); keep",
+    "evidence": "caught by the data contract after cleaning; min was 1,617",
+    "rows_affected": 17
+  },
+  {
+    "#": 16,
+    "step": "leakage / fairness review",
+    "columns": "interest_rate",
+    "decision": "KEEP, flagged",
+    "rationale": "Set by the CURRENT underwriting model from the credit score: known at decision time, but learning from the old model's output can freeze its biases. Revisit in v2.",
+    "alternatives_considered": "",
+    "evidence": "",
+    "rows_affected": null
+  },
+  {
+    "#": 17,
+    "step": "leakage / fairness review",
+    "columns": "purpose_text",
+    "decision": "EXCLUDE from v1",
+    "rationale": "Free text duplicates loan_purpose; may contain PII. Candidate for embeddings (Lab 11) after a PII review.",
+    "alternatives_considered": "",
+    "evidence": "",
+    "rows_affected": null
+  },
+  {
+    "#": 18,
+    "step": "leakage / fairness review",
+    "columns": "application_id",
+    "decision": "EXCLUDE",
+    "rationale": "Identifier",
+    "alternatives_considered": "",
+    "evidence": "",
+    "rows_affected": null
+  },
+  {
+    "#": 19,
+    "step": "leakage / fairness review",
+    "columns": "state",
+    "decision": "KEEP, monitor",
+    "rationale": "Geography can proxy protected attributes; check approval rates by state.",
+    "alternatives_considered": "",
+    "evidence": "",
+    "rows_affected": null
+  },
+  {
+    "#": 20,
+    "step": "leakage / fairness review",
+    "columns": "age",
+    "decision": "KEEP, legal review",
+    "rationale": "Protected attribute in many jurisdictions (e.g. ECOA in the US) - legal sign-off required before production use.",
+    "alternatives_considered": "",
+    "evidence": "",
+    "rows_affected": null
+  },
+  {
+    "#": 21,
+    "step": "splitting",
+    "columns": "application_date",
+    "decision": "train < 2025-07-01 <= test",
+    "rationale": "The model will score FUTURE applicants; a random split hides drift",
+    "alternatives_considered": "random 80/20",
+    "evidence": "4475 train / 1525 test rows",
+    "rows_affected": null
+  },
+  {
+    "#": 22,
+    "step": "reviewed - kept as-is",
+    "columns": "education",
+    "decision": "no change",
+    "rationale": "Profiled and validated: values plausible, consistent",
+    "alternatives_considered": "",
+    "evidence": "4 categories, 0.0% missing: ['Bachelor', 'High School', 'Master', 'PhD']",
+    "rows_affected": null
+  },
+  {
+    "#": 23,
+    "step": "reviewed - kept as-is",
+    "columns": "num_credit_lines",
+    "decision": "no change",
+    "rationale": "Profiled and validated: values plausible, consistent",
+    "alternatives_considered": "",
+    "evidence": "range 0..18, 0.0% missing",
+    "rows_affected": null
+  },
+  {
+    "#": 24,
+    "step": "reviewed - kept as-is",
+    "columns": "delinquencies_2y",
+    "decision": "no change",
+    "rationale": "Profiled and validated: values plausible, consistent",
+    "alternatives_considered": "",
+    "evidence": "range 0..7, 0.0% missing",
+    "rows_affected": null
+  },
+  {
+    "#": 25,
+    "step": "reviewed - kept as-is",
+    "columns": "loan_term_months",
+    "decision": "no change",
+    "rationale": "Profiled and validated: values plausible, consistent",
+    "alternatives_considered": "",
+    "evidence": "range 36..60, 0.0% missing",
+    "rows_affected": null
+  },
+  {
+    "#": 26,
+    "step": "target",
+    "columns": "defaulted",
+    "decision": "kept as-is (0/1)",
+    "rationale": "Defined by collections: 90+ days past due within 12 months",
+    "alternatives_considered": "",
+    "evidence": "default rate 17.2%",
+    "rows_affected": null
+  }
+]

@@ -1,0 +1,28 @@
+name: Bug report
+description: A lab crashes, gives a different number, or an explanation is wrong
+labels: [bug]
+body:
+  - type: input
+    id: lab
+    attributes:
+      label: Module and lab
+      placeholder: Module4_Classification_Model_Evaluation / 11_hands_on_lab_customer_churn.py
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened, and what did you expect?
+      description: Paste the full error, or the number you got vs the one in the README.
+    validations:
+      required: true
+  - type: dropdown
+    id: mode
+    attributes:
+      label: How did you run it?
+      options: [Script (python lab.py), Cell mode (VS Code / Jupyter), run_all.py]
+  - type: input
+    id: env
+    attributes:
+      label: Environment
+      placeholder: Windows 11, Python 3.13.1, scikit-learn 1.9, pandas 2.2

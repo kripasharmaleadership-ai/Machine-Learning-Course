@@ -1,0 +1,163 @@
+{
+  "problem": "Nightly call-list ranking for a term-deposit campaign",
+  "recommendation": "Logistic regression",
+  "requirements": [
+    {
+      "name": "No post-call information",
+      "metric": "leak-free",
+      "threshold": null,
+      "higher_is_better": true,
+      "hard": true,
+      "weight": 0.0,
+      "why": "The list is built BEFORE the call; anything measured during the call is unavailable"
+    },
+    {
+      "name": "Ranking quality floor",
+      "metric": "CV AUC",
+      "threshold": 0.65,
+      "higher_is_better": true,
+      "hard": true,
+      "weight": 0.0,
+      "why": "The current segment rules reach ~0.60; a model must be clearly better"
+    },
+    {
+      "name": "Nightly batch fits the window",
+      "metric": "rows / second (batch)",
+      "threshold": 2000,
+      "higher_is_better": true,
+      "hard": true,
+      "weight": 0.0,
+      "why": "45,000 customers scored in < 30 s inside the nightly job"
+    },
+    {
+      "name": "Ranking quality",
+      "metric": "CV AUC",
+      "threshold": null,
+      "higher_is_better": true,
+      "hard": false,
+      "weight": 0.2,
+      "why": "Overall ranking (5-fold CV)"
+    },
+    {
+      "name": "Recent months",
+      "metric": "recent AUC",
+      "threshold": null,
+      "higher_is_better": true,
+      "hard": false,
+      "weight": 0.15,
+      "why": "Behaviour drifts: performance on the latest 20% of calls"
+    },
+    {
+      "name": "Top-decile lift",
+      "metric": "top-10% lift",
+      "threshold": null,
+      "higher_is_better": true,
+      "hard": false,
+      "weight": 0.15,
+      "why": "The call centre only reaches the top of the list"
+    },
+    {
+      "name": "Explainability",
+      "metric": "explainability",
+      "threshold": null,
+      "higher_is_better": true,
+      "hard": false,
+      "weight": 0.2,
+      "why": "Agents must say why a customer is called; auditors must review the logic"
+    },
+    {
+      "name": "Training time",
+      "metric": "fit seconds",
+      "threshold": null,
+      "higher_is_better": false,
+      "hard": false,
+      "weight": 0.05,
+      "why": "Weekly retraining on shared hardware"
+    },
+    {
+      "name": "Model size",
+      "metric": "model size KB",
+      "threshold": null,
+      "higher_is_better": false,
+      "hard": false,
+      "weight": 0.1,
+      "why": "Stored and versioned with every release"
+    },
+    {
+      "name": "Deployment complexity",
+      "metric": "complexity points",
+      "threshold": null,
+      "higher_is_better": false,
+      "hard": false,
+      "weight": 0.15,
+      "why": "Preprocessing steps + learned numbers + dependencies to maintain"
+    }
+  ],
+  "results": {
+    "Logistic regression": {
+      "CV AUC": 0.6825144061239292,
+      "recent AUC": 0.6841959104637491,
+      "top-10% lift": 1.665377532228361,
+      "explainability": 0.8,
+      "fit seconds": 0.1862080999999307,
+      "latency ms (1 row)": 3.585200000088662,
+      "rows / second (batch)": 503012.06450608873,
+      "model size KB": 3.439453125,
+      "learned numbers": 50,
+      "complexity points": 5.698970004336019,
+      "leak-free": true
+    },
+    "Decision tree (depth 5)": {
+      "CV AUC": 0.6204403378436043,
+      "recent AUC": 0.634171637783932,
+      "top-10% lift": 1.3895505092323444,
+      "explainability": 1.0,
+      "fit seconds": 0.15981740001006983,
+      "latency ms (1 row)": 3.2899499929044396,
+      "rows / second (batch)": 502257.74413148576,
+      "model size KB": 5.6259765625,
+      "learned numbers": 58,
+      "complexity points": 4.763427993562937,
+      "leak-free": true
+    },
+    "Random forest": {
+      "CV AUC": 0.7074292025997619,
+      "recent AUC": 0.6956700289619646,
+      "top-10% lift": 1.5499206865066468,
+      "explainability": 0.4,
+      "fit seconds": 8.46463629999198,
+      "latency ms (1 row)": 17.263199988519773,
+      "rows / second (batch)": 30965.805779105765,
+      "model size KB": 38901.744140625,
+      "learned numbers": 992680,
+      "complexity points": 8.996809272028466,
+      "leak-free": true
+    },
+    "Gradient boosting": {
+      "CV AUC": 0.7103756217789595,
+      "recent AUC": 0.6638675269687639,
+      "top-10% lift": 1.7143592243527244,
+      "explainability": 0.5,
+      "fit seconds": 1.9303877000056673,
+      "latency ms (1 row)": 5.739400003221817,
+      "rows / second (batch)": 246672.7951872822,
+      "model size KB": 484.2568359375,
+      "learned numbers": 13664,
+      "complexity points": 6.1355778533449294,
+      "leak-free": true
+    },
+    "Gradient boosting + call duration": {
+      "CV AUC": 0.9527415708224201,
+      "recent AUC": 0.7813672462681533,
+      "top-10% lift": 1.9872572233313215,
+      "explainability": 0.5,
+      "fit seconds": 0.5544672000105493,
+      "latency ms (1 row)": 5.568500011577271,
+      "rows / second (batch)": 190213.96174988072,
+      "model size KB": 658.33984375,
+      "learned numbers": 18666,
+      "complexity points": 6.271051261492347,
+      "leak-free": false
+    }
+  }
+}

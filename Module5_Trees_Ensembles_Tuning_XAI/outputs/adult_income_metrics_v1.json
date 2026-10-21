@@ -1,0 +1,75 @@
+{
+  "model": "HistGradientBoostingClassifier (tuned)",
+  "params": {
+    "categorical_features": "from_dtype",
+    "class_weight": "None",
+    "early_stopping": "True",
+    "interaction_cst": "None",
+    "l2_regularization": "3.6905577292137624",
+    "learning_rate": "0.18667726370518706",
+    "loss": "log_loss",
+    "max_bins": "255",
+    "max_depth": "None",
+    "max_features": "1.0",
+    "max_iter": "500",
+    "max_leaf_nodes": "9",
+    "min_samples_leaf": "49",
+    "monotonic_cst": "None",
+    "n_iter_no_change": "10",
+    "random_state": "0",
+    "scoring": "loss",
+    "tol": "1e-07",
+    "validation_fraction": "0.1",
+    "verbose": "0",
+    "warm_start": "False"
+  },
+  "features": [
+    "age",
+    "education_num",
+    "capital_gain",
+    "capital_loss",
+    "hours_per_week",
+    "workclass",
+    "marital_status",
+    "occupation",
+    "relationship",
+    "native_country"
+  ],
+  "excluded": {
+    "fnlwgt": "sampling weight",
+    "education": "duplicate of education_num",
+    "sex, race": "sensitive; used only for auditing"
+  },
+  "test": {
+    "test AUC": 0.9296018379067461,
+    "test log loss": 0.2743540192148199,
+    "test accuracy @0.5": 0.8754222540689938,
+    "fit seconds": 0.3020576999988407
+  },
+  "fairness_oof": {
+    "people": {
+      "Female": 12933.0,
+      "Male": 26140.0
+    },
+    "actual share > $50k": {
+      "Female": 0.10886878527797109,
+      "Male": 0.303787299158378
+    },
+    "mean predicted P": {
+      "Female": 0.11588654947291867,
+      "Male": 0.299922031198556
+    },
+    "selected (p >= 0.5)": {
+      "Female": 0.08211551844119694,
+      "Male": 0.2577276205049732
+    },
+    "recall": {
+      "Female": 0.5873579545454546,
+      "Male": 0.6591109432061453
+    },
+    "precision": {
+      "Female": 0.7787193973634652,
+      "Male": 0.7769036663203206
+    }
+  }
+}

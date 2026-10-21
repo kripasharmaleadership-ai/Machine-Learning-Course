@@ -1,0 +1,11 @@
+numpy>=2.0
+pandas>=2.2
+scikit-learn>=1.8
+scipy>=1.13
+matplotlib>=3.8
+# Labs 07-15 train small networks with PyTorch (CPU is enough; Labs 01-06 are pure NumPy)
+torch>=2.4
+# optional: run the labs cell-by-cell in VS Code / Jupyter
+ipykernel>=6.29
+# optional: if installed, Lab 14 adds a pretrained DistilBERT sentiment model (downloads ~270 MB once)
+# transformers>=4.44

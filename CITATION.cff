@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use this course in teaching or research, please cite it as below."
+title: "Machine Learning Course: From First Principles to Agentic AI"
+type: software
+authors:
+  - family-names: Sharma
+    given-names: Kripa
+repository-code: "https://github.com/kripasharmaleadership-ai/Machine-Learning-Course"
+license: MIT
+date-released: 2026-10-21
+keywords:
+  - machine-learning
+  - deep-learning
+  - generative-ai
+  - large-language-models
+  - retrieval-augmented-generation
+  - ai-agents
+  - course
+  - education

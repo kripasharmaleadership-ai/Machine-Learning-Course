@@ -1,0 +1,112 @@
+{
+  "problem": "HR handbook page finder: which retrieval approach should the prototype (and later the RAG assistant) use?",
+  "recommendation": "embeddings",
+  "requirements": [
+    {
+      "name": "right page in top 3",
+      "metric": "recall@3",
+      "threshold": 0.9,
+      "higher_is_better": true,
+      "hard": true,
+      "weight": 0.0,
+      "why": "employees see three suggestions; the right page must be among them"
+    },
+    {
+      "name": "latency",
+      "metric": "ms_per_query",
+      "threshold": 20,
+      "higher_is_better": false,
+      "hard": true,
+      "weight": 0.0,
+      "why": "it sits behind a chat box"
+    },
+    {
+      "name": "right page first",
+      "metric": "recall@1",
+      "threshold": null,
+      "higher_is_better": true,
+      "hard": false,
+      "weight": 0.4,
+      "why": "the RAG answer cites the top page"
+    },
+    {
+      "name": "ranking quality",
+      "metric": "MRR",
+      "threshold": null,
+      "higher_is_better": true,
+      "hard": false,
+      "weight": 0.2,
+      "why": "the right page near the top"
+    },
+    {
+      "name": "refuses out-of-scope",
+      "metric": "oos_refused",
+      "threshold": null,
+      "higher_is_better": true,
+      "hard": false,
+      "weight": 0.3,
+      "why": "no confident answers from unrelated pages"
+    },
+    {
+      "name": "index size",
+      "metric": "index_kb",
+      "threshold": null,
+      "higher_is_better": false,
+      "hard": false,
+      "weight": 0.1,
+      "why": "cost of storing vectors for 10,000+ pages later"
+    }
+  ],
+  "results": {
+    "word TF-IDF": {
+      "recall@1": 0.6458333333333334,
+      "recall@3": 0.8541666666666666,
+      "MRR": 0.7682291666666666,
+      "ms_per_query": 0.036697917191001274,
+      "oos_refused": 0.8333333333333334,
+      "in_scope_refused": 0.125,
+      "index_kb": 4.625,
+      "threshold": 0.07210829643671925
+    },
+    "char TF-IDF": {
+      "recall@1": 0.75,
+      "recall@3": 0.875,
+      "MRR": 0.8163194444444445,
+      "ms_per_query": 0.08840833288559224,
+      "oos_refused": 0.8333333333333334,
+      "in_scope_refused": 0.22916666666666666,
+      "index_kb": 90.7734375,
+      "threshold": 0.20031894107847975
+    },
+    "embeddings": {
+      "recall@1": 0.7291666666666666,
+      "recall@3": 0.9375,
+      "MRR": 0.8352430555555556,
+      "ms_per_query": 0.03132500023639295,
+      "oos_refused": 0.8333333333333334,
+      "in_scope_refused": 0.041666666666666664,
+      "index_kb": 15.0,
+      "threshold": 0.33694023459844963
+    },
+    "hybrid": {
+      "recall@1": 0.7291666666666666,
+      "recall@3": 0.9375,
+      "MRR": 0.8352430555555556,
+      "ms_per_query": 0.06648958333244082,
+      "oos_refused": 0.8333333333333334,
+      "in_scope_refused": 0.041666666666666664,
+      "index_kb": 19.625,
+      "threshold": 0.33694023459844963
+    },
+    "hybrid on chunks": {
+      "recall@1": 0.7291666666666666,
+      "recall@3": 0.7916666666666666,
+      "MRR": 0.8015625000000001,
+      "ms_per_query": 0.06800625002748954,
+      "oos_refused": 0.8333333333333334,
+      "in_scope_refused": 0.041666666666666664,
+      "index_kb": 44.0703125,
+      "threshold": 0.39855080261161363
+    }
+  }
+}

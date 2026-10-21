@@ -1,0 +1,171 @@
+{
+  "problem": "Card-fraud decision policy (approve / review / auto-decline)",
+  "recommendation": "S9 auto-decline + expected-$ queue (top 2%)",
+  "requirements": [
+    {
+      "name": "Analyst capacity",
+      "metric": "review rate %",
+      "threshold": 2.0,
+      "higher_is_better": false,
+      "hard": true,
+      "weight": 0.0,
+      "why": "20 analysts can review at most 2% of transactions"
+    },
+    {
+      "name": "Customer friction",
+      "metric": "good customers disturbed %",
+      "threshold": 2.0,
+      "higher_is_better": false,
+      "hard": true,
+      "weight": 0.0,
+      "why": "Customer experience: at most 2% of good customers held or declined"
+    },
+    {
+      "name": "Fraud $ stopped",
+      "metric": "fraud $ stopped %",
+      "threshold": 60.0,
+      "higher_is_better": true,
+      "hard": true,
+      "weight": 0.0,
+      "why": "Board target: stop at least 60% of fraud losses"
+    },
+    {
+      "name": "Net cost",
+      "metric": "net cost $",
+      "threshold": null,
+      "higher_is_better": false,
+      "hard": false,
+      "weight": 0.5,
+      "why": "Fraud losses + review cost + customer friction"
+    },
+    {
+      "name": "Fraud $ stopped (soft)",
+      "metric": "fraud $ stopped %",
+      "threshold": null,
+      "higher_is_better": true,
+      "hard": false,
+      "weight": 0.2,
+      "why": "Regulator and press: share of fraud money stopped"
+    },
+    {
+      "name": "Review precision",
+      "metric": "review precision",
+      "threshold": null,
+      "higher_is_better": true,
+      "hard": false,
+      "weight": 0.15,
+      "why": "Analyst morale: share of reviews that are real fraud"
+    },
+    {
+      "name": "Simplicity",
+      "metric": "simplicity",
+      "threshold": null,
+      "higher_is_better": true,
+      "hard": false,
+      "weight": 0.15,
+      "why": "1 = one number to explain and monitor; lower = more moving parts"
+    }
+  ],
+  "results": {
+    "S0 default 0.5": {
+      "review rate %": 0.54,
+      "auto-declined %": 0.0,
+      "frauds stopped (count %)": 20.075046904315197,
+      "fraud $ stopped %": 21.310562983958672,
+      "good customers disturbed %": 0.18664947229103743,
+      "review precision": 0.6604938271604939,
+      "net cost $": 158658.02000000002,
+      "simplicity": 1.0
+    },
+    "S1 max F1": {
+      "review rate %": 2.013333333333333,
+      "auto-declined %": 0.0,
+      "frauds stopped (count %)": 45.96622889305816,
+      "fraud $ stopped %": 48.253033547828764,
+      "good customers disturbed %": 1.2183120100451352,
+      "review precision": 0.4056291390728477,
+      "net cost $": 117512.77000000002,
+      "simplicity": 1.0
+    },
+    "S2 Youden J": {
+      "review rate %": 14.783333333333335,
+      "auto-declined %": 0.0,
+      "frauds stopped (count %)": 89.8686679174484,
+      "fraud $ stopped %": 94.16288347554554,
+      "good customers disturbed %": 13.425187497878982,
+      "review precision": 0.10800450958286359,
+      "net cost $": 139747.97999999998,
+      "simplicity": 1.0
+    },
+    "S3 recall >= 80%": {
+      "review rate %": 8.64,
+      "auto-declined %": 0.0,
+      "frauds stopped (count %)": 79.9249530956848,
+      "fraud $ stopped %": 82.16891937346819,
+      "good customers disturbed %": 7.350595581497947,
+      "review precision": 0.16435185185185186,
+      "net cost $": 108593.2,
+      "simplicity": 1.0
+    },
+    "S4 Bayes p* (avg fraud $)": {
+      "review rate %": 4.703333333333334,
+      "auto-declined %": 0.0,
+      "frauds stopped (count %)": 67.16697936210132,
+      "fraud $ stopped %": 66.42808698538218,
+      "good customers disturbed %": 3.5734889876811353,
+      "review precision": 0.2537207654145996,
+      "net cost $": 104822.6,
+      "simplicity": 1.0
+    },
+    "S5 capacity: top 2%": {
+      "review rate %": 2.0,
+      "auto-declined %": 0.0,
+      "frauds stopped (count %)": 45.77861163227016,
+      "fraud $ stopped %": 47.64403750313247,
+      "good customers disturbed %": 1.2081311297383515,
+      "review precision": 0.4066666666666667,
+      "net cost $": 118601.33,
+      "simplicity": 1.0
+    },
+    "S6 p*(amount) per transaction": {
+      "review rate %": 3.8033333333333337,
+      "auto-declined %": 0.0,
+      "frauds stopped (count %)": 53.47091932457786,
+      "fraud $ stopped %": 76.39668804033307,
+      "good customers disturbed %": 2.904944514202328,
+      "review precision": 0.24978089395267308,
+      "net cost $": 77833.48,
+      "simplicity": 0.7
+    },
+    "S7 two-tier: p*(amount) review + auto-decline": {
+      "review rate %": 3.2800000000000002,
+      "auto-declined %": 0.54,
+      "frauds stopped (count %)": 54.03377110694184,
+      "fraud $ stopped %": 76.4446228010932,
+      "good customers disturbed %": 2.911731767740184,
+      "review precision": 0.1839430894308943,
+      "net cost $": 76269.14000000001,
+      "simplicity": 0.5
+    },
+    "S8 expected-$ ranking, top 2%": {
+      "review rate %": 2.0,
+      "auto-declined %": 0.0,
+      "frauds stopped (count %)": 36.96060037523452,
+      "fraud $ stopped %": 60.40045595438749,
+      "good customers disturbed %": 1.367631587877965,
+      "review precision": 0.3283333333333333,
+      "net cost $": 93965.53,
+      "simplicity": 0.6
+    },
+    "S9 auto-decline + expected-$ queue (top 2%)": {
+      "review rate %": 2.0,
+      "auto-declined %": 0.54,
+      "frauds stopped (count %)": 45.590994371482175,
+      "fraud $ stopped %": 68.84146550902406,
+      "good customers disturbed %": 1.761292293073608,
+      "review precision": 0.22666666666666666,
+      "net cost $": 80162.85,
+      "simplicity": 0.4
+    }
+  }
+}

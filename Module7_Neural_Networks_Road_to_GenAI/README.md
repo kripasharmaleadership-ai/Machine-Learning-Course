@@ -1,5 +1,7 @@
 # Module 7: Neural Networks and the Road to Generative AI
 
+[🏠 Course home](../README.md) · [📋 Syllabus](../SYLLABUS.md) · [← Module 6](../Module6_Unsupervised_Recommendations_Embeddings) · **Module 7 of 8** · [Module 8 →](../Module8_GenAI_Capstone_Agentic_AI)
+
 Fifteen runnable labs and an assignment. Each lab builds from **EASY → MEDIUM → HARD**, and each HARD level ends with a "plot twist". The scenarios are spirals, handwritten digits, sequences with hidden rules, product reviews, and an **invented world** that a tiny GPT learns from scratch.
 
 The theme of the module: **open the box, one piece at a time, until the box is an LLM.**

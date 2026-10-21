@@ -1,5 +1,7 @@
 # Module 5: Trees, Ensembles, Tuning, and Explainable AI
 
+[🏠 Course home](../README.md) · [📋 Syllabus](../SYLLABUS.md) · [← Module 4](../Module4_Classification_Model_Evaluation) · **Module 5 of 8** · [Module 6 →](../Module6_Unsupervised_Recommendations_Embeddings)
+
 Fourteen runnable labs and an assignment. Each lab builds from **EASY → MEDIUM → HARD**, and each HARD level ends with a "plot twist". The scenarios are credit applicants, bike-rental demand, pump maintenance, the US census and a bank's telemarketing campaign.
 
 The theme of the module: **build strong tree models, then earn the right to trust them.**

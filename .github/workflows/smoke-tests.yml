@@ -1,10 +1,9 @@
 name: Smoke tests
 
 # Runs every lab and assignment starter of every module (each module's run_all.py), in parallel.
+# Manual only for now (Actions tab -> Smoke tests -> Run workflow). Re-enable push / pull_request triggers
+# once the labs are verified against the library versions the runner installs.
 on:
-  push:
-    branches: [main]
-  pull_request:
   workflow_dispatch:
 
 concurrency:

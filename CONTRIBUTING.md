@@ -4,7 +4,7 @@ Thanks for helping make this course better! Fixes for bugs, clearer explanations
 
 ## Reporting a problem
 
-Open an [issue](../../issues/new/choose) with:
+Open an [issue](https://github.com/kripasharmaleadership-ai/Machine-Learning-Course/issues/new/choose) with:
 - the module and lab (e.g. `Module4 / 11_hands_on_lab_customer_churn.py`),
 - what you ran (script or cell mode), your OS, and `python --version`,
 - the full error, or the number you expected vs the number you got.
@@ -29,7 +29,7 @@ python run_all.py            # every lab in the module, pass/fail + runtime
 python run_all.py 07 11      # only the labs whose file name starts with 07 or 11
 ```
 
-If you change a module's toolkit or `ml_lab_utils.py`, run the **whole** module before and after your change and compare the outputs: a shared helper can move numbers in labs you didn't touch. CI runs every module on each pull request.
+Install with `pip install -r requirements.txt -c constraints.txt` so your numbers match the READMEs. If you change a module's toolkit or `ml_lab_utils.py`, run the **whole** module before and after your change and compare the outputs: a shared helper can move numbers in labs you didn't touch.
 
 ## Pull requests
 

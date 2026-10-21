@@ -1,5 +1,7 @@
 # Module 1: Machine Learning Foundations and Problem Formulation
 
+[🏠 Course home](../README.md) · [📋 Syllabus](../SYLLABUS.md) · **Module 1 of 8** · [Module 2 →](../Module2_Data_Preparation_Feature_Engineering)
+
 Fourteen runnable labs. Each one builds from **EASY → MEDIUM → HARD** and uses business scenarios (telecom churn, fraud, e-commerce, retention offers), not toy examples.
 
 Every lab is a plain Python file with `# %%` cell markers:

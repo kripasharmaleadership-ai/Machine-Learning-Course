@@ -1,5 +1,7 @@
 # Module 2: Data Preparation and Feature Engineering
 
+[🏠 Course home](../README.md) · [📋 Syllabus](../SYLLABUS.md) · [← Module 1](../Module1_ML_Foundations) · **Module 2 of 8** · [Module 3 →](../Module3_Regression_Mathematics_of_Learning)
+
 Twelve runnable labs. Each one builds from **EASY → MEDIUM → HARD**, and each HARD level ends with a production-grade "plot twist". The scenarios are credit risk, card fraud, house pricing and a telecom support knowledge base.
 
 The theme of the module, proven with numbers in almost every lab: **data quality and domain knowledge beat algorithm complexity.**

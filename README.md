@@ -1,11 +1,14 @@
 <div align="center">
 
+<img src="assets/banner.png" width="100%" alt="Machine Learning Course: 8 modules from ML foundations to GenAI, RAG and agents">
+
 # Machine Learning Course: From First Principles to Agentic AI
 
 **105 runnable labs across 8 modules: data and classical ML, then neural networks, then LLMs, RAG and AI agents.**
 <br>Every lab runs offline on a laptop CPU, uses data with a known ground truth, and ends with a result you can check.
 
-[![Smoke tests](https://github.com/kripasharmaleadership-ai/Machine-Learning-Course/actions/workflows/smoke-tests.yml/badge.svg)](https://github.com/kripasharmaleadership-ai/Machine-Learning-Course/actions/workflows/smoke-tests.yml)
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/kripasharmaleadership-ai/Machine-Learning-Course?quickstart=1)
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg?logo=python&logoColor=white)](https://www.python.org/)
 ![Labs](https://img.shields.io/badge/labs-105-brightgreen)
@@ -22,7 +25,9 @@
 ![Jupyter cells](https://img.shields.io/badge/VS%20Code%20%2F%20Jupyter-cells-F37626?logo=jupyter&logoColor=white)
 
 [Quick start](#-quick-start) ·
+[Who it's for](#-who-this-course-is-for) ·
 [Learning path](#-the-learning-path) ·
+[Syllabus](SYLLABUS.md) ·
 [Modules](#-the-modules) ·
 [How a lab works](#-how-a-lab-works) ·
 [Datasets](#-datasets) ·
@@ -55,7 +60,7 @@ cd Machine-Learning-Course
 
 python -m venv .venv
 source .venv/bin/activate          # Windows: .venv\Scripts\activate
-pip install -r requirements.txt    # everything for all 8 modules (CPU-only PyTorch is enough)
+pip install -r requirements.txt -c constraints.txt   # everything for all 8 modules, at the tested versions
 
 cd Module1_ML_Foundations
 python 01_what_is_machine_learning.py     # one lab, narrated in the terminal, charts in outputs/
@@ -64,9 +69,31 @@ python run_all.py                         # every lab in the module, with pass/f
 
 **Cell mode (recommended for learning):** open any lab in VS Code, then click **Run Cell** above each `# %%`. Charts appear inline.
 
+**Nothing to install:** click **Open in GitHub Codespaces** above. You get VS Code in the browser with every dependency already installed.
+
 **Run the whole course:** `python run_all.py` from the repository root (about an hour), or `python run_all.py 7 8` for selected modules.
 
-> Each module also has its own `requirements.txt` if you only want one of them. Modules 1-6 need only the scientific Python stack; Module 7 adds PyTorch, Module 8 adds `jsonschema`.
+> `constraints.txt` pins the exact versions the labs were tested with (pandas 2.2, NumPy 2.2, scikit-learn 1.9, PyTorch 2.10), so your numbers match the READMEs. Newer major releases (pandas 3, for example) can change results. Each module also has its own `requirements.txt` if you only want one: Modules 1-6 need only the scientific Python stack, Module 7 adds PyTorch, and Module 8 adds `jsonschema`. For a smaller PyTorch download, use `pip install torch==2.10.0 --index-url https://download.pytorch.org/whl/cpu`.
+
+---
+
+## 🎓 Who this course is for
+
+- **Beginners with some Python** who want to learn ML properly, not just call `.fit()`.
+- **Data scientists and engineers** moving into LLMs, RAG and agents, who want to see how the classical ideas carry over.
+- **Instructors** who need ready-made, reproducible labs with assignments and automated grading.
+
+**By the end you will be able to:**
+
+- Frame a business problem as an ML problem, with success metrics and a leakage-free evaluation.
+- Prepare messy data into a reusable, documented pipeline.
+- Train, tune, compare and *explain* regression, classification, tree and ensemble models, and choose between them with a business scorecard.
+- Cluster, compress, detect anomalies, recommend, and build semantic search on embeddings.
+- Explain how a transformer and an LLM work, down to the tokenizer and the generation loop, and why LLMs hallucinate.
+- Build and evaluate a RAG system and a tool-using AI agent with guardrails, human approval and defences against prompt injection.
+
+| 📦 8 modules | 🧪 105 labs | 📝 7 assignments with automated rubrics | 🗃 7 real datasets | 💻 0 GPUs / API keys needed |
+|:---:|:---:|:---:|:---:|:---:|
 
 ---
 
@@ -435,9 +462,12 @@ Machine-Learning-Course/
 │   ├── README.md                     episode plan with the key numbers
 │   ├── requirements.txt, run_all.py
 │   └── outputs/                      charts, memos, diagrams
+├── SYLLABUS.md                       the full course syllabus, module by module
 ├── run_all.py                        run every module (or some: python run_all.py 7 8)
 ├── requirements.txt                  everything for all modules
-└── .github/workflows/smoke-tests.yml every module tested on each push
+├── constraints.txt                   the exact library versions the labs were tested with
+├── .devcontainer/                    one-click environment for GitHub Codespaces
+└── assets/                           the banner (and the script that draws it)
 ```
 
 ---
@@ -465,7 +495,7 @@ The labs are `.py` files with `# %%` cells, which VS Code, PyCharm and Jupyter (
 <details>
 <summary><b>My numbers are slightly different from the README.</b></summary>
 
-All randomness is seeded, but different library versions can shift results slightly. The labs were tested with Python 3.13, NumPy 2.2, pandas 2.2, scikit-learn 1.9 and PyTorch 2.10. The `>>` notes are computed from your run, so they always describe the numbers on your screen.
+All randomness is seeded, but different library versions can shift results. The labs were tested with Python 3.13, NumPy 2.2, pandas 2.2, scikit-learn 1.9 and PyTorch 2.10. Install with `-c constraints.txt` to get exactly those versions. Either way, the `>>` notes are computed from your run, so they always describe the numbers on your screen.
 </details>
 
 <details>
@@ -478,7 +508,7 @@ In order, 1 → 8, if you're new to ML. If you already know classical ML, Module
 
 ## 🤝 Contributing
 
-Found a bug, a confusing explanation, or a better plot twist? Issues and pull requests are welcome. Please read [CONTRIBUTING.md](CONTRIBUTING.md) first: it describes the lab conventions (levels, data-driven notes, seeded runs) and how to test a change with `run_all.py`.
+Found a bug, a confusing explanation, or a better plot twist? Issues and pull requests are welcome. Please read [CONTRIBUTING.md](CONTRIBUTING.md) first: it describes the lab conventions (levels, data-driven notes, seeded runs) and how to test a change with `run_all.py`. Everyone taking part agrees to the [Code of Conduct](CODE_OF_CONDUCT.md). Changes between versions are listed in the [CHANGELOG](CHANGELOG.md).
 
 ## 📄 License and citation
 

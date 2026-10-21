@@ -1,5 +1,7 @@
 # Module 4: Classification and Model Evaluation
 
+[🏠 Course home](../README.md) · [📋 Syllabus](../SYLLABUS.md) · [← Module 3](../Module3_Regression_Mathematics_of_Learning) · **Module 4 of 8** · [Module 5 →](../Module5_Trees_Ensembles_Tuning_XAI)
+
 Thirteen runnable labs and an assignment. Each lab builds from **EASY → MEDIUM → HARD**, and each HARD level ends with a "plot twist". The scenarios are loan defaults, card fraud, cancer biopsies, telecom churn, a customer-support AI assistant and sepsis screening in an emergency department.
 
 The theme of the module: **a classifier gives you a score; the threshold turns it into a decision, and the decision has a price.** Accuracy rarely measures what the business cares about (Labs 03 and 05). The same model can lose to a one-line rule at the default threshold of 0.5 and beat it at a well-chosen one (Lab 11). And the classifiers inside LLM systems and agents are evaluated with exactly the same tools (Lab 12).

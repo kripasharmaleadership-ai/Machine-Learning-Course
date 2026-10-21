@@ -1,5 +1,7 @@
 # Module 6: Unsupervised Learning, Recommendations, and Embeddings
 
+[🏠 Course home](../README.md) · [📋 Syllabus](../SYLLABUS.md) · [← Module 5](../Module5_Trees_Ensembles_Tuning_XAI) · **Module 6 of 8** · [Module 7 →](../Module7_Neural_Networks_Road_to_GenAI)
+
 Eleven runnable labs and an assignment. Each lab builds from **EASY → MEDIUM → HARD**, and each HARD level ends with a "plot twist". The scenarios are a retailer's customers, expense claims, a movie service, a product catalogue, an HR handbook and an IT help centre.
 
 The theme of the module: **find structure without labels, then turn it into vectors you can search.**

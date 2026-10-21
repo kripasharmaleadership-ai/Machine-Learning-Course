@@ -1,5 +1,7 @@
 # Module 3: Regression and the Mathematics of Learning
 
+[🏠 Course home](../README.md) · [📋 Syllabus](../SYLLABUS.md) · [← Module 2](../Module2_Data_Preparation_Feature_Engineering) · **Module 3 of 8** · [Module 4 →](../Module4_Classification_Model_Evaluation)
+
 Eleven runnable labs and an assignment. Each lab builds from **EASY → MEDIUM → HARD**, and each HARD level ends with a "plot twist". The scenarios are house pricing, energy purchasing, healthcare costs, drug-response genomics, mortgage valuation and food-delivery ETAs.
 
 The theme of the module: **training a model = minimising a loss with gradients**. The same loop that fits a straight line also trains a neural network and a language model (Lab 10). The *right* model is the one that meets the business requirements, not just the one with the lowest RMSE (Lab 11).

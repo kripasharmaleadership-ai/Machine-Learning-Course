@@ -1,0 +1,11 @@
+# The exact versions the labs were tested with. The numbers in the READMEs come from these versions.
+# Install with:  pip install -r requirements.txt -c constraints.txt
+# Newer releases (e.g. pandas 3, numpy 2.5) may change results or break a lab.
+numpy==2.2.6
+pandas==2.2.3
+scikit-learn==1.9.0
+scipy==1.18.0
+matplotlib==3.11.2
+joblib==1.5.3
+torch==2.10.0
+jsonschema==4.24.0

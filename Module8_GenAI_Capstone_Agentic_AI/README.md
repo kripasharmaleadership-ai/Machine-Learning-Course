@@ -1,5 +1,7 @@
 # Module 8: ML-to-GenAI Capstone and Agentic AI Foundations
 
+[🏠 Course home](../README.md) · [📋 Syllabus](../SYLLABUS.md) · [← Module 7](../Module7_Neural_Networks_Road_to_GenAI) · **Module 8 of 8**
+
 Fifteen runnable labs and a capstone assignment. Each lab builds from **EASY → MEDIUM → HARD**, and each HARD level ends with a "plot twist". The scenario is the same all the way through: the customer support team of **Lumora Home**, a fictional smart-home store. It has a help centre (with stale, look-alike and one poisoned article), an orders database, and 400 support tickets with a full answer key.
 
 The theme of the module: **a reliable GenAI system is mostly the parts around the model.**
